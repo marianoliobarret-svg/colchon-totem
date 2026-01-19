@@ -1,0 +1,313 @@
+/* =========================
+   RESET + BASE
+========================= */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  background: #f7f7f6;
+  color: #2e2e2e;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+h1, h2, h3 {
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  color: #1f1f1f;
+  margin-top: 0;
+}
+
+/* =========================
+   LAYOUT GENERAL
+========================= */
+.app-layout {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  min-height: 100vh;
+}
+
+.step-container {
+  padding: 48px 56px;
+}
+
+.preview-container {
+  background: #ffffff;
+  border-left: 1px solid #e6e6e4;
+  padding: 32px;
+}
+
+/* =========================
+   STEPS
+========================= */
+.step {
+  max-width: 720px;
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 18px;
+  margin: 28px 0;
+}
+
+/* =========================
+   OPCIONES (CARDS)
+========================= */
+.option-card {
+  padding: 22px 18px;
+  border-radius: 14px;
+  border: 1px solid #e1e1df;
+  background: #ffffff;
+  cursor: pointer;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  color: #3a3a3a;
+  transition: all 0.25s ease;
+}
+
+.option-card:hover {
+  border-color: #c9c9c6;
+  background: #fafafa;
+}
+
+.option-card.selected {
+  border-color: #b8b8b5;
+  background: #f1f1ef;
+}
+
+/* =========================
+   BOTONES
+========================= */
+button {
+  padding: 12px 22px;
+  border-radius: 999px;
+  border: 1px solid #d4d4d2;
+  background: #ffffff;
+  font-size: 13px;
+  font-weight: 400;
+  color: #2e2e2e;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  background: #f3f3f2;
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.step-actions,
+.resumen-actions,
+.acciones-precios {
+  display: flex;
+  gap: 14px;
+  margin-top: 32px;
+}
+
+/* botón primario (muy sutil) */
+.step-actions button:last-child,
+.resumen-actions button:last-child {
+  background: #eaeae8;
+  border-color: #d0d0ce;
+}
+
+/* =========================
+   WELCOME SCREEN
+========================= */
+.welcome-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f7f7f6;
+}
+
+.welcome-card {
+  background: #ffffff;
+  padding: 48px 42px;
+  border-radius: 18px;
+  width: 380px;
+  text-align: center;
+  border: 1px solid #e3e3e1;
+}
+
+.welcome-card h1 {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+.welcome-card p {
+  font-size: 14px;
+  color: #666;
+}
+
+.welcome-card input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #d6d6d4;
+  margin: 20px 0;
+  font-size: 14px;
+}
+
+/* =========================
+   PANEL ADMIN
+========================= */
+.admin-container {
+  padding: 36px;
+}
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 28px;
+}
+
+.admin-column {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid #e3e3e1;
+}
+
+/* =========================
+   TABLA ADMIN
+========================= */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #ededeb;
+  text-align: left;
+}
+
+.admin-table th {
+  font-weight: 500;
+  color: #6a6a6a;
+}
+
+/* =========================
+   PRECIOS ADMIN
+========================= */
+.precio-admin h2 {
+  margin-bottom: 16px;
+}
+
+.precio-admin h3 {
+  margin-top: 28px;
+  font-size: 14px;
+  color: #4a4a4a;
+}
+
+.precio-admin label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 14px;
+  font-size: 13px;
+  color: #555;
+}
+
+.precio-admin input {
+  margin-top: 6px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #d6d6d4;
+  font-size: 13px;
+}
+
+/* =========================
+   PREVIEW
+========================= */
+/* =========================
+   PREVIEW COLCHÓN – CRECE HACIA ARRIBA
+========================= */
+
+.colchon-preview {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  height: 420px;
+  margin: 0 auto;
+}
+
+/* capas */
+.colchon-preview .layer {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+
+  transform: translateX(-50%);
+  opacity: 0;
+
+  object-fit: contain;
+  pointer-events: none;
+
+  transition:
+    opacity 0.5s ease,
+    transform 0.6s ease;
+}
+
+/* visible */
+.colchon-preview .layer {
+  opacity: 1;
+}
+
+/* =========================
+   APILADO REAL (HACIA ARRIBA)
+========================= */
+
+.colchon-preview .layer:nth-child(1) {
+  z-index: 1;
+  bottom: 0;
+}
+
+.colchon-preview .layer:nth-child(2) {
+  z-index: 2;
+  bottom: 20px;
+}
+
+.colchon-preview .layer:nth-child(3) {
+  z-index: 3;
+  bottom: 40px;
+}
+
+.colchon-preview .layer:nth-child(4) {
+  z-index: 4;
+  bottom: 60px;
+}
+
+.colchon-preview .layer:nth-child(5) {
+  z-index: 5;
+  bottom: 80px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 900px) {
+  .colchon-preview {
+    max-width: 260px;
+    height: 340px;
+  }
+
+  .colchon-preview .layer {
+    max-width: 260px;
+  }
+}

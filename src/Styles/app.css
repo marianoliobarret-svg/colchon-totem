@@ -1,0 +1,102 @@
+/* CONTENEDOR DE OPCIONES */
+.options {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 60px;
+}
+
+/* BOTONES TIPO TÓTEM */
+button {
+  min-width: 200px;
+  min-height: 120px;
+  font-size: 2rem;
+  background: #f2f2f2;
+  border: 3px solid #ccc;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* HOVER (mouse) */
+button:hover {
+  background: #e0e0e0;
+}
+
+/* PRESIONADO / SELECCIONADO */
+button.active {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+  transform: scale(1.05);
+}
+
+/* TÍTULO */
+h1 {
+  text-align: center;
+  font-size: 3rem;
+  margin-top: 60px;
+}
+.step {
+  animation: fadeIn 0.35s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.mattress {
+  width: 300px;
+  margin: 40px auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.layer {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: white;
+}
+
+/* Colores por capa */
+.layer-Visco {
+  background: #6a5acd;
+}
+
+.layer-Alta\ densidad {
+  background: #ff6347;
+}
+.welcome-reset {
+  margin-top: 12px;
+  background: transparent;
+  color: #6b7280;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.welcome-reset:hover {
+  text-decoration: underline;
+}
+.welcome-admin {
+  margin-top: 16px;
+  background: transparent;
+  border: none;
+  color: #2563eb;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.welcome-admin:hover {
+  text-decoration: underline;
+}
