@@ -27,23 +27,7 @@ export async function obtenerPrecios() {
   if (!res.ok) throw new Error("Error al obtener precios");
   return res.json();
 }
- /*
- export async function obtenerPrecios() {
-  const url = `${import.meta.env.VITE_API_URL}/precios`;
-  console.log("FETCH PRECIOS →", url);
 
-  const res = await fetch(url);
-
-  const text = await res.text(); // 👈 clave
-  console.log("RESPUESTA RAW →", text);
-
-  try {
-    return JSON.parse(text);
-  } catch (e) {
-    throw new Error("La respuesta no es JSON válido");
-  }
-}
-*/
 
 export async function guardarPrecios(precios) {
   const res = await fetch(`${API_URL}/precios`, {
