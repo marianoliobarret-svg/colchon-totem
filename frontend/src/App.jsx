@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import React from "react";
+
 
 import StepAltura from "./steps/StepAltura";
 import StepNucleo from "./steps/StepNucleo";

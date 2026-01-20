@@ -1,3 +1,5 @@
+import React from "react";
+
 import { calcularPrecio } from "../utils/precio";
 
 export default function PrecioPreview({ config, precios }) {

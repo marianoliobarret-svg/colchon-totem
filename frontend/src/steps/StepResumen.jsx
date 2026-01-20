@@ -1,5 +1,7 @@
 import { calcularPrecio } from "../utils/precio";
 import { crearPedido } from "../utils/api";
+import React from "react";
+
 
 export default function StepResumen({
   config,

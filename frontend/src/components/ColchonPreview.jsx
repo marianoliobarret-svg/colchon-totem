@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function ColchonPreview({ config }) {
   return (
     <div className="colchon-preview">

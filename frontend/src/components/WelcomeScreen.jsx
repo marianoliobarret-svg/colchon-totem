@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function WelcomeScreen({ onStart, onAdmin }) {
   const iniciar = (e) => {
     e.preventDefault();
