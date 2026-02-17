@@ -15,8 +15,14 @@ export async function login(user, pass) {
     throw new Error("Credenciales incorrectas");
   }
 
-  return res.json();
+  const data = await res.json();
+
+  // Guardar token
+  localStorage.setItem("token", data.token);
+
+  return data;
 }
+
 
 /* ======================
    PRECIOS

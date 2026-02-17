@@ -27,28 +27,15 @@ export async function obtenerPrecios() {
   if (!res.ok) throw new Error("Error al obtener precios");
   return res.json();
 }
- /*
- export async function obtenerPrecios() {
-  const url = `${import.meta.env.VITE_API_URL}/precios`;
-  console.log("FETCH PRECIOS →", url);
 
-  const res = await fetch(url);
-
-  const text = await res.text(); // 👈 clave
-  console.log("RESPUESTA RAW →", text);
-
-  try {
-    return JSON.parse(text);
-  } catch (e) {
-    throw new Error("La respuesta no es JSON válido");
-  }
-}
-*/
 
 export async function guardarPrecios(precios) {
   const res = await fetch(`${API_URL}/precios`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${localStorage.getItem("token")}`
+    },
     body: JSON.stringify(precios),
   });
 
@@ -62,7 +49,10 @@ export async function guardarPrecios(precios) {
 export async function crearPedido(pedido) {
   const res = await fetch(`${API_URL}/pedidos`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${localStorage.getItem("token")}`
+    },
     body: JSON.stringify(pedido),
   });
 
@@ -71,15 +61,24 @@ export async function crearPedido(pedido) {
 }
 
 export async function obtenerPedidos() {
-  const res = await fetch(`${API_URL}/pedidos`);
+  const res = await fetch(`${API_URL}/pedidos`, {
+    headers: {
+      "Authorization": `Bearer ${localStorage.getItem("token")}`
+    }
+  });
+
   if (!res.ok) throw new Error("Error al obtener pedidos");
   return res.json();
 }
 
+
 export async function actualizarEstadoPedido(id, estado) {
   const res = await fetch(`${API_URL}/pedidos/${id}`, {
     method: "PATCH",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${localStorage.getItem("token")}`
+    },
     body: JSON.stringify({ estado }),
   });
 
