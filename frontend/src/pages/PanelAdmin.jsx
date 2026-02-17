@@ -42,6 +42,18 @@ export default function PanelAdmin() {
     }
   };
 
+    const borrarPedido = async (id) => {
+    if (!window.confirm("¿Seguro que querés eliminar este pedido?")) return;
+
+    try {
+      await eliminarPedido(id);
+      setPedidos(prev => prev.filter(p => p.id !== id));
+    } catch {
+      alert("Error al eliminar pedido");
+    }
+};
+
+
   if (loading) return <p>Cargando panel...</p>;
 
   return (
