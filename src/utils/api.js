@@ -83,17 +83,3 @@ export function logout() {
   localStorage.removeItem("token");
 }
 
-/* ======================
-   Baja de pedido
-====================== */
-export async function eliminarPedido(id) {
-  const res = await fetch(`${API_URL}/pedidos/${id}`, {
-    method: "DELETE",
-    headers: {
-      "Authorization": `Bearer ${localStorage.getItem("token")}`
-    }
-  });
-
-  if (!res.ok) throw new Error("Error al eliminar pedido");
-  return res.json();
-}

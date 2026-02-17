@@ -85,6 +85,23 @@ export async function actualizarEstadoPedido(id, estado) {
   if (!res.ok) throw new Error("Error al actualizar estado");
   return res.json();
 }
+
+/* ======================
+   Baja de pedido
+====================== */
+export async function eliminarPedido(id) {
+  const res = await fetch(`${API_URL}/pedidos/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Authorization": `Bearer ${localStorage.getItem("token")}`
+    }
+  });
+
+  if (!res.ok) throw new Error("Error al eliminar pedido");
+  return res.json();
+}
+
+
 export function isAuth() {
   return Boolean(localStorage.getItem("token"));
 }
