@@ -11,12 +11,16 @@ export default function LoginAdmin({ onSuccess }) {
   const submit = async (e) => {
     e.preventDefault();
     try {
-      await login(user, pass);
+      const data = await login(user, pass);
+
+      localStorage.setItem("token", data.token);
+
       onSuccess();
     } catch {
       setError("Credenciales incorrectas");
     }
   };
+
 
   return (
     <form onSubmit={submit} className="admin-login">
