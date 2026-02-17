@@ -56,9 +56,51 @@ export default function PanelAdmin() {
 
   if (loading) return <p>Cargando panel...</p>;
 
+    const totalPedidos = pedidos.length;
+
+    const nuevos = pedidos.filter(p => p.estado === "nuevo").length;
+    const contactados = pedidos.filter(p => p.estado === "contactado").length;
+    const cerrados = pedidos.filter(p => p.estado === "cerrado").length;
+
+    const facturacionTotal = pedidos.reduce(
+      (acc, p) => acc + (p.precio?.total || 0),
+      0
+    );
+
+
   return (
     <div className="admin-container">
       <h1>Panel de administración</h1>
+
+        <div className="stats">
+        <div className="stat-card">
+          <h3>Total pedidos</h3>
+          <p>{totalPedidos}</p>
+        </div>
+
+        <div className="stat-card">
+          <h3>Nuevos</h3>
+          <p>{nuevos}</p>
+        </div>
+
+        <div className="stat-card">
+          <h3>Contactados</h3>
+          <p>{contactados}</p>
+        </div>
+
+        <div className="stat-card">
+          <h3>Cerrados</h3>
+          <p>{cerrados}</p>
+        </div>
+
+        <div className="stat-card">
+          <h3>Facturación total</h3>
+          <p>
+            ${facturacionTotal.toLocaleString("es-AR")}
+          </p>
+        </div>
+      </div>
+
 
       <div className="admin-grid">
         {/* PEDIDOS */}
