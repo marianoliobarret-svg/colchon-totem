@@ -41,8 +41,39 @@ function guardarJSON(file, data) {
 }
 
 /* =========================
+   MIDDLEWARE DE AUTENTICACIÓN
+========================= */
+function authMiddleware(req, res, next) {
+  const authHeader = req.headers.authorization;
+
+  if (!authHeader) {
+    return res.status(401).json({ error: "No autorizado" });
+  }
+
+  const token = authHeader.split(" ")[1];
+
+  if (token !== process.env.ADMIN_TOKEN) {
+    return res.status(403).json({ error: "Token inválido" });
+  }
+  next();
+}
+
+/* =========================
    ENDPOINTS
 ========================= */
+// ---- Login ----
+app.post("/login", (req, res) => {
+  const { user, pass } = req.body;
+
+  if (
+    user === process.env.ADMIN_USER &&
+    pass === process.env.ADMIN_PASS
+  ) {
+    return res.json({ token: process.env.ADMIN_TOKEN });
+  }
+
+  res.status(401).json({ error: "Credenciales incorrectas" });
+});
 
 // ---- Precios ----
 app.get("/precios", (req, res) => {
@@ -50,13 +81,13 @@ app.get("/precios", (req, res) => {
   res.json(precios);
 });
 
-app.post("/precios", (req, res) => {
+app.post("/precios", authMiddleware, (req, res) => {
   guardarJSON(PRECIOS_FILE, req.body);
   res.json({ ok: true });
 });
 
 // ---- Pedidos ----
-app.get("/pedidos", (req, res) => {
+app.get("/pedidos", authMiddleware, (req, res) => {
   const pedidos = leerJSON(PEDIDOS_FILE) || [];
   res.json(pedidos);
 });
@@ -77,7 +108,7 @@ app.post("/pedidos", (req, res) => {
   res.json({ ok: true });
 });
 
-app.patch("/pedidos/:id", (req, res) => {
+app.patch("/pedidos/:id", authMiddleware, (req, res) => {
   const pedidos = leerJSON(PEDIDOS_FILE) || [];
   const id = Number(req.params.id);
 
@@ -92,6 +123,11 @@ app.patch("/pedidos/:id", (req, res) => {
 /* =========================
    START SERVER
 ========================= */
+console.log("ADMIN_USER:", process.env.ADMIN_USER);
+console.log("ADMIN_PASS:", process.env.ADMIN_PASS);
+console.log("ADMIN_TOKEN:", process.env.ADMIN_TOKEN);
+
+
 app.listen(PORT, () => {
   console.log("Backend corriendo en puerto", PORT);
 });
