@@ -113,6 +113,7 @@ export default function PanelAdmin() {
         <div className="admin-column">
           <h2>Gestión de pedidos</h2>
 
+            <h3>Filtros</h3>
             <div className="filtros">
             <button onClick={() => setFiltro("todos")}>
               Todos
