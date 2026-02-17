@@ -8,6 +8,8 @@ import {
 } from "../utils/api";
 import PrecioAdmin from "../components/PrecioAdmin";
 
+const [filtro, setFiltro] = useState("todos");
+
 const ESTADOS = ["nuevo", "contactado", "cerrado"];
 
 export default function PanelAdmin() {
@@ -67,6 +69,11 @@ export default function PanelAdmin() {
       0
     );
 
+    const pedidosFiltrados =
+     filtro === "todos"
+    ? pedidos
+    : pedidos.filter(p => p.estado === filtro);
+
 
   return (
     <div className="admin-container">
@@ -74,27 +81,27 @@ export default function PanelAdmin() {
 
         <div className="stats">
         <div className="stat-card">
-          <h3>Total pedidos</h3>
+          <h2>Total pedidos</h2>
           <p>{totalPedidos}</p>
         </div>
 
         <div className="stat-card">
-          <h3>Nuevos</h3>
+          <h2>Nuevos</h2>
           <p>{nuevos}</p>
         </div>
 
         <div className="stat-card">
-          <h3>Contactados</h3>
+          <h2>Contactados</h2>
           <p>{contactados}</p>
         </div>
 
         <div className="stat-card">
-          <h3>Cerrados</h3>
+          <h2>Cerrados</h2>
           <p>{cerrados}</p>
         </div>
 
         <div className="stat-card">
-          <h3>Facturación total</h3>
+          <h2>Facturación total</h2>
           <p>
             ${facturacionTotal.toLocaleString("es-AR")}
           </p>
@@ -106,6 +113,24 @@ export default function PanelAdmin() {
         {/* PEDIDOS */}
         <div className="admin-column">
           <h2>Gestión de pedidos</h2>
+
+            <div className="filtros">
+            <button onClick={() => setFiltro("todos")}>
+              Todos
+            </button>
+
+            <button onClick={() => setFiltro("nuevo")}>
+              Nuevos
+            </button>
+
+            <button onClick={() => setFiltro("contactado")}>
+              Contactados
+            </button>
+
+            <button onClick={() => setFiltro("cerrado")}>
+              Cerrados
+            </button>
+          </div>
 
           <table className="admin-table">
             <thead>
@@ -119,7 +144,7 @@ export default function PanelAdmin() {
             </thead>
 
             <tbody>
-              {[...pedidos]
+              {[...pedidosFiltrados]
                 .sort(
                   (a, b) =>
                     new Date(b.fecha) -
