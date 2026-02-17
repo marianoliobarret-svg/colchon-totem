@@ -1,4 +1,5 @@
 import React from "react";
+import { eliminarPedido } from "../utils/api";
 
 import { useEffect, useState } from "react";
 import {
@@ -117,8 +118,16 @@ export default function PanelAdmin() {
                         ))}
                       </select>
                     </td>
+                     <td>
+                  <button
+                    onClick={() => borrarPedido(pedido.id)}
+                  >
+                    Eliminar
+                  </button>
+                </td>
                   </tr>
                 ))}
+               
             </tbody>
           </table>
         </div>
