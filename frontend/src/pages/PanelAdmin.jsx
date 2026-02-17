@@ -8,13 +8,12 @@ import {
 } from "../utils/api";
 import PrecioAdmin from "../components/PrecioAdmin";
 
-const [filtro, setFiltro] = useState("todos");
-
 const ESTADOS = ["nuevo", "contactado", "cerrado"];
 
 export default function PanelAdmin() {
   const [pedidos, setPedidos] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [filtro, setFiltro] = useState("todos");
 
   useEffect(() => {
     cargarPedidos();
