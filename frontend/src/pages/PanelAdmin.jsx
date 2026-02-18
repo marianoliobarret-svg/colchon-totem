@@ -17,7 +17,7 @@ export default function PanelAdmin() {
 
 const [filtroEstado, setFiltroEstado] = useState("todos");
 const [ordenMonto, setOrdenMonto] = useState("fecha");
-  
+
   useEffect(() => {
     cargarPedidos();
   }, []);
@@ -152,14 +152,6 @@ const [ordenMonto, setOrdenMonto] = useState("fecha");
             </button>
           </div>
 
-          <select
-            value={ordenMonto}
-            onChange={(e) => setOrdenMonto(e.target.value)}>
-              <option value="fecha">Más recientes</option>
-              <option value="mayor">Mayor monto</option>
-              <option value="menor">Menor monto</option>
-          </select>
-
           <table className="admin-table">
             <thead>
               <tr>
@@ -170,7 +162,13 @@ const [ordenMonto, setOrdenMonto] = useState("fecha");
                 <th>Estado</th>
               </tr>
             </thead>
-
+            <select
+            value={ordenMonto}
+            onChange={(e) => setOrdenMonto(e.target.value)}>
+              <option value="fecha">Más recientes</option>
+              <option value="mayor">Mayor monto</option>
+              <option value="menor">Menor monto</option>
+            </select>
             <tbody>
               {[...pedidosFiltrados]
                 .sort(
