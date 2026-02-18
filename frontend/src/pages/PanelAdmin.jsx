@@ -100,6 +100,7 @@ const [ordenMonto, setOrdenMonto] = useState("fecha");
     ); 
 
 console.log(pedidos);
+pedidos.forEach(p => console.log(p.producto));
 
   return (
     <div className="admin-container">
