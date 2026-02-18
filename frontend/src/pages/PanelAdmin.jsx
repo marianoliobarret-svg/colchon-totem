@@ -15,9 +15,8 @@ export default function PanelAdmin() {
   const [loading, setLoading] = useState(true);
   const [filtro, setFiltro] = useState("todos");
 
-  
-  const [ordenMonto, setOrdenMonto] = useState("fecha"); 
-  // fecha | mayor | menor
+const [filtroEstado, setFiltroEstado] = useState("todos");
+const [ordenMonto, setOrdenMonto] = useState("fecha");
   
   useEffect(() => {
     cargarPedidos();
