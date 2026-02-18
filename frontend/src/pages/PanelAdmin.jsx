@@ -140,21 +140,27 @@ const [ordenMonto, setOrdenMonto] = useState("fecha");
 
             <h3>Filtros</h3>
             <div className="filtros">
-            <button onClick={() => setFiltro("todos")}>
+            <button className={`btn-filter ${filtro === "todos" ? "active" : ""}`}
+            onClick={() => setFiltro("todos")}>
               Todos
             </button>
 
-            <button onClick={() => setFiltro("nuevo")}>
+            <button className={`btn-filter ${filtro === "nuevo" ? "active" : ""}`}
+            onClick={() => setFiltro("nuevo")}>
               Nuevos
             </button>
 
-            <button onClick={() => setFiltro("contactado")}>
+            <button className={`btn-filter ${filtro === "contactado" ? "active" : ""}`}
+            onClick={() => setFiltro("contactado")}>
               Contactados
             </button>
 
-            <button onClick={() => setFiltro("cerrado")}>
+            <button className={`btn-filter ${filtro === "cerrado" ? "active" : ""}`}
+            onClick={() => setFiltro("cerrado")}>
               Cerrados
             </button>
+            </div>
+
               <select
                 value={ordenMonto}
                 onChange={(e) => setOrdenMonto(e.target.value)}>
@@ -229,6 +235,7 @@ const [ordenMonto, setOrdenMonto] = useState("fecha");
                     </td>
                      <td>
                   <button
+                    className="btn-delete"
                     onClick={() => borrarPedido(pedido.id)}
                   >
                     Eliminar
@@ -246,7 +253,6 @@ const [ordenMonto, setOrdenMonto] = useState("fecha");
           <PrecioAdmin />
         </div>
       </div>
-    </div>
   );
 }
 

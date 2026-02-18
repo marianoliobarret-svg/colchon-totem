@@ -162,7 +162,7 @@ button:disabled {
    PANEL ADMIN
 ========================= */
 .admin-container {
-  padding: 40;
+  padding: 30px;
 }
 
 .admin-grid {
@@ -408,15 +408,70 @@ button:disabled {
 
 .estado-nuevo {
   background: #e6f4ff;
-  color: #007bff;
+  color: #ffff00;
 }
 
 .estado-contactado {
   background: #fff4e5;
-  color: #ff9800;
+  color: #ff00a6;
 }
 
 .estado-cerrado {
   background: #e8f5e9;
   color: #2e7d32;
+}
+
+/* =========================
+  Botones Filtros panel admin
+========================= */
+.btn-filter {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  background: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.btn-filter:hover {
+  background: #f3f4f6;
+}
+
+.btn-filter.active {
+  background: #111827;
+  color: white;
+  border-color: #111827;
+}
+
+/* =========================
+  Botones Delete panel admin
+========================= */
+.btn-delete {
+  background: #fff;
+  border: 1px solid #f87171;
+  color: #f87171;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s ease;
+}
+
+.btn-delete:hover {
+  background: #f87171;
+  color: white;
+}
+
+/* =========================
+  Select panel admin
+========================= */
+
+select {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  background: white;
+  cursor: pointer;
+  font-size: 14px;
 }
