@@ -362,3 +362,20 @@ button:disabled {
 .filtros button:hover {
   background: #ddd;
 }
+/* =========================
+  Botones header admin
+========================= */
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.admin-header button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: #eee;
+  cursor: pointer;
+  border-radius: 6px;
+
+}
