@@ -99,160 +99,169 @@ const [ordenMonto, setOrdenMonto] = useState("fecha");
       0
     ); 
 
-  return (
-    <div className="admin-container">
-      <h1>Panel de administración</h1>
+return (
+  <div className="admin-container">
+    <h1>Panel de administración</h1>
 
-        <div className="stats">
-        <div className="stat-card">
-          <h2>Total pedidos</h2>
-          <p>{totalPedidos}</p>
-        </div>
-
-        <div className="stat-card">
-          <h2>Nuevos</h2>
-          <p>{nuevos}</p>
-        </div>
-
-        <div className="stat-card">
-          <h2>Contactados</h2>
-          <p>{contactados}</p>
-        </div>
-
-        <div className="stat-card">
-          <h2>Cerrados</h2>
-          <p>{cerrados}</p>
-        </div>
-
-        <div className="stat-card">
-          <h2>Facturación total</h2>
-          <p>
-            ${facturacionTotal.toLocaleString("es-AR")}
-          </p>
-        </div>
+    {/* STATS */}
+    <div className="stats">
+      <div className="stat-card">
+        <h2>Total pedidos</h2>
+        <p>{totalPedidos}</p>
       </div>
 
+      <div className="stat-card">
+        <h2>Nuevos</h2>
+        <p>{nuevos}</p>
+      </div>
 
-      <div className="admin-grid">
-        {/* PEDIDOS */}
-        <div className="admin-column">
-          <h2>Gestión de pedidos</h2>
+      <div className="stat-card">
+        <h2>Contactados</h2>
+        <p>{contactados}</p>
+      </div>
 
-            <h3>Filtros</h3>
-            <div className="filtros">
-            <button className={`btn-filter ${filtro === "todos" ? "active" : ""}`}
-            onClick={() => setFiltro("todos")}>
-              Todos
-            </button>
+      <div className="stat-card">
+        <h2>Cerrados</h2>
+        <p>{cerrados}</p>
+      </div>
 
-            <button className={`btn-filter ${filtro === "nuevo" ? "active" : ""}`}
-            onClick={() => setFiltro("nuevo")}>
-              Nuevos
-            </button>
+      <div className="stat-card">
+        <h2>Facturación total</h2>
+        <p>${facturacionTotal.toLocaleString("es-AR")}</p>
+      </div>
+    </div>
 
-            <button className={`btn-filter ${filtro === "contactado" ? "active" : ""}`}
-            onClick={() => setFiltro("contactado")}>
-              Contactados
-            </button>
+    <div className="admin-grid">
+      {/* COLUMNA PEDIDOS */}
+      <div className="admin-column">
+        <h2>Gestión de pedidos</h2>
 
-            <button className={`btn-filter ${filtro === "cerrado" ? "active" : ""}`}
-            onClick={() => setFiltro("cerrado")}>
-              Cerrados
-            </button>
-            </div>
+        <h3>Filtros</h3>
+        <div className="filtros">
+          <button
+            className={`btn-filter ${filtro === "todos" ? "active" : ""}`}
+            onClick={() => setFiltro("todos")}
+          >
+            Todos
+          </button>
 
-              <select
-                value={ordenMonto}
-                onChange={(e) => setOrdenMonto(e.target.value)}>
-                  <option value="fecha">Más recientes</option>
-                  <option value="mayor">Mayor monto</option>
-                  <option value="menor">Menor monto</option>
-              </select>
-          </div>
+          <button
+            className={`btn-filter ${filtro === "nuevo" ? "active" : ""}`}
+            onClick={() => setFiltro("nuevo")}
+          >
+            Nuevos
+          </button>
 
-          <table className="admin-table">
-            <thead>
-              <tr>
-                <th>Fecha</th>
-                <th>Cliente</th>
-                <th>Producto</th>
-                <th>Total</th>
-                <th>Estado</th>
-              </tr>
-            </thead>
+          <button
+            className={`btn-filter ${filtro === "contactado" ? "active" : ""}`}
+            onClick={() => setFiltro("contactado")}
+          >
+            Contactados
+          </button>
 
-            <tbody>
-             {pedidosProcesados.map((pedido) => (
-                  <tr key={pedido.id}>
-                    <td>
-                      {new Date(
-                        pedido.fecha
-                      ).toLocaleDateString()}
-                    </td>
+          <button
+            className={`btn-filter ${filtro === "cerrado" ? "active" : ""}`}
+            onClick={() => setFiltro("cerrado")}
+          >
+            Cerrados
+          </button>
+        </div>
 
-                    <td>
-                      {pedido.producto?.cliente || pedido.cliente || "-"}
-                    </td>
-                   <td>
-                    {[
-                      `${pedido.producto.altura}cm`,
-                      pedido.producto.nucleo,
-                      ...(pedido.producto.capas || []),
-                      pedido.producto.tela
-                    ]
-                      .filter(Boolean)
-                      .join(" · ")}
-                    </td>
-                    <td>
-                      $
-                      {pedido.precio.total.toLocaleString(
-                        "es-AR"
-                      )}
-                    </td>
+        <div style={{ margin: "15px 0" }}>
+          <select
+            value={ordenMonto}
+            onChange={(e) => setOrdenMonto(e.target.value)}
+          >
+            <option value="fecha">Más recientes</option>
+            <option value="mayor">Mayor monto</option>
+            <option value="menor">Menor monto</option>
+          </select>
+        </div>
 
-                    <td>
-                      <div className={`estado-badge estado-${pedido.estado}`}>
-                      <select
-                        value={pedido.estado}
-                        onChange={(e) =>
-                          cambiarEstado(
-                            pedido.id,
-                            e.target.value
-                          )
-                        }
+        <table className="admin-table">
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Cliente</th>
+              <th>Producto</th>
+              <th>Total</th>
+              <th>Estado</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {pedidosProcesados.map((pedido) => (
+              <tr key={pedido.id}>
+                <td>
+                  {new Date(pedido.fecha).toLocaleDateString()}
+                </td>
+
+                <td>
+                  {pedido.producto?.cliente ||
+                    pedido.cliente ||
+                    "-"}
+                </td>
+
+                <td>
+                  {[
+                    `${pedido.producto.altura}cm`,
+                    pedido.producto.nucleo,
+                    ...(pedido.producto.capas || []),
+                    pedido.producto.tela,
+                  ]
+                    .filter(Boolean)
+                    .join(" · ")}
+                </td>
+
+                <td>
+                  $
+                  {pedido.precio.total.toLocaleString("es-AR")}
+                </td>
+
+                <td>
+                  <select
+                    value={pedido.estado}
+                    onChange={(e) =>
+                      cambiarEstado(
+                        pedido.id,
+                        e.target.value
+                      )
+                    }
+                  >
+                    {ESTADOS.map((estado) => (
+                      <option
+                        key={estado}
+                        value={estado}
                       >
-                        
-                        {ESTADOS.map((estado) => (
-                          <option
-                            key={estado}
-                            value={estado}
-                          >
-                            {estado}
-                          </option>
-                        ))}
-                      </select>
-                      </div>
-                    </td>
-                     <td>
+                        {estado}
+                      </option>
+                    ))}
+                  </select>
+                </td>
+
+                <td>
                   <button
                     className="btn-delete"
-                    onClick={() => borrarPedido(pedido.id)}
+                    onClick={() =>
+                      borrarPedido(pedido.id)
+                    }
                   >
                     Eliminar
                   </button>
                 </td>
-                  </tr>
-                ))}
-               
-            </tbody>
-          </table>
-        </div>
-
-        {/* PRECIOS */}
-        <div className="admin-column">
-          <PrecioAdmin />
-        </div>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
-  );
+
+      {/* COLUMNA PRECIOS */}
+      <div className="admin-column">
+        <PrecioAdmin />
+      </div>
+    </div>
+  </div>
+);
 }
 
