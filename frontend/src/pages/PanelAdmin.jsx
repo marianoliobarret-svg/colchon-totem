@@ -58,24 +58,22 @@ export default function PanelAdmin() {
           }
     };
 
-    const pedidosProcesados = pedidos
-      .filter((pedido) => {
-        if (filtroEstado === "todos") return true;
-        return pedido.estado === filtroEstado;
-      })
-      .sort((a, b) => {
-        if (ordenMonto === "mayor") {
-          return b.monto - a.monto;
-        }
+      const pedidosProcesados = [...pedidos]
+        .filter((pedido) => {
+          if (filtroEstado === "todos") return true;
+          return pedido.estado === filtroEstado;
+        })
+        .sort((a, b) => {
+          if (ordenMonto === "mayor") {
+            return Number(b.monto) - Number(a.monto);
+          }
 
-        if (ordenMonto === "menor") {
-          return a.monto - b.monto;
-        }
+          if (ordenMonto === "menor") {
+            return Number(a.monto) - Number(b.monto);
+          }
 
-        // default: fecha descendente
-        return new Date(b.fecha) - new Date(a.fecha);
-    });
-
+          return new Date(b.fecha) - new Date(a.fecha);
+        });
 
 
   if (loading) return <p>Cargando panel...</p>;
