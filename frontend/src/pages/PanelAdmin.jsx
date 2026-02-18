@@ -1,11 +1,8 @@
 import React from "react";
 import { eliminarPedido } from "../utils/api";
-
 import { useEffect, useState } from "react";
-import {
-  obtenerPedidos,
-  actualizarEstadoPedido,
-} from "../utils/api";
+import { obtenerPedidos, actualizarEstadoPedido,}
+from "../utils/api";
 import PrecioAdmin from "../components/PrecioAdmin";
 
 const ESTADOS = ["nuevo", "contactado", "cerrado"];
@@ -15,9 +12,8 @@ export default function PanelAdmin() {
   const [loading, setLoading] = useState(true);
   const [filtro, setFiltro] = useState("todos");
 
-const [filtroEstado, setFiltroEstado] = useState("todos");
 const [ordenMonto, setOrdenMonto] = useState("fecha");
-
+  
   useEffect(() => {
     cargarPedidos();
   }, []);
@@ -59,8 +55,8 @@ const [ordenMonto, setOrdenMonto] = useState("fecha");
 
       const pedidosProcesados = [...pedidos]
         .filter((pedido) => {
-          if (filtroEstado === "todos") return true;
-          return pedido.estado === filtroEstado;
+          if (filtro === "todos") return true;
+          return pedido.estado === filtro;
         })
         .sort((a, b) => {
           if (ordenMonto === "mayor") {
@@ -86,13 +82,7 @@ const [ordenMonto, setOrdenMonto] = useState("fecha");
     const facturacionTotal = pedidos.reduce(
       (acc, p) => acc + (p.precio?.total || 0),
       0
-    );
-
-    const pedidosFiltrados =
-     filtro === "todos"
-    ? pedidos
-    : pedidos.filter(p => p.estado === filtro);
-
+    ); 
 
   return (
     <div className="admin-container">
@@ -150,6 +140,13 @@ const [ordenMonto, setOrdenMonto] = useState("fecha");
             <button onClick={() => setFiltro("cerrado")}>
               Cerrados
             </button>
+              <select
+                value={ordenMonto}
+                onChange={(e) => setOrdenMonto(e.target.value)}>
+                  <option value="fecha">Más recientes</option>
+                  <option value="mayor">Mayor monto</option>
+                  <option value="menor">Menor monto</option>
+              </select>
           </div>
 
           <table className="admin-table">
@@ -162,21 +159,9 @@ const [ordenMonto, setOrdenMonto] = useState("fecha");
                 <th>Estado</th>
               </tr>
             </thead>
-            <select
-            value={ordenMonto}
-            onChange={(e) => setOrdenMonto(e.target.value)}>
-              <option value="fecha">Más recientes</option>
-              <option value="mayor">Mayor monto</option>
-              <option value="menor">Menor monto</option>
-            </select>
+
             <tbody>
-              {[...pedidosFiltrados]
-                .sort(
-                  (a, b) =>
-                    new Date(b.fecha) -
-                    new Date(a.fecha)
-                )
-                .map((pedido) => (
+             {pedidosProcesados.map((pedido) => (
                   <tr key={pedido.id}>
                     <td>
                       {new Date(
