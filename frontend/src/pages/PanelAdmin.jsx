@@ -53,23 +53,25 @@ const [ordenMonto, setOrdenMonto] = useState("fecha");
           }
     };
 
-      const pedidosProcesados = [...pedidos]
-        .filter((pedido) => {
-          if (filtro === "todos") return true;
-          return pedido.estado === filtro;
-        })
-        .sort((a, b) => {
-          if (ordenMonto === "mayor") {
-            return Number(b.monto) - Number(a.monto);
-          }
+  const pedidosProcesados = [...pedidos]
+    .filter((pedido) => {
+      if (filtro === "todos") return true;
+      return pedido.estado === filtro;
+    })
+    .sort((a, b) => {
+      const totalA = Number(a.precio?.total || 0);
+      const totalB = Number(b.precio?.total || 0);
 
-          if (ordenMonto === "menor") {
-            return Number(a.monto) - Number(b.monto);
-          }
+      if (ordenMonto === "mayor") {
+        return totalB - totalA;
+      }
 
-          return new Date(b.fecha) - new Date(a.fecha);
-        });
+      if (ordenMonto === "menor") {
+        return totalA - totalB;
+      }
 
+      return new Date(b.fecha) - new Date(a.fecha);
+    });
 
   if (loading) return <p>Cargando panel...</p>;
 
