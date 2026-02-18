@@ -99,6 +99,8 @@ const [ordenMonto, setOrdenMonto] = useState("fecha");
       0
     ); 
 
+console.log(pedidos);
+
   return (
     <div className="admin-container">
       <h1>Panel de administración</h1>
@@ -185,15 +187,16 @@ const [ordenMonto, setOrdenMonto] = useState("fecha");
                     </td>
 
                     <td>
-                      {pedido.producto?.cliente ||
-                        "-"}
+                      {pedido.producto?.cliente || pedido.cliente || "-"}
                     </td>
 
                     <td>
-                      {pedido.producto.altura}cm ·{" "}
-                      {pedido.producto.nucleo} ·{" "}
-                      {pedido.producto.capa} ·{" "}
-                      {pedido.producto.tela}
+                      {pedido.producto.altura}cm -{" "}
+                      {pedido.producto.nucleo} -{" "}
+                      {pedido.producto.capa} -{" "}
+                      {pedido.producto.tela
+                          ?.filter(Boolean)
+                          .join(" · ")}
                     </td>
 
                     <td>
