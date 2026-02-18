@@ -220,24 +220,19 @@ return (
                 </td>
 
                 <td>
-                  <td>
-                    <div
-                      className={`estado-badge estado-${pedido.estado}`}
-                      onClick={() => {
-                        const siguienteEstado =
-                          pedido.estado === "nuevo"
-                            ? "contactado"
-                            : pedido.estado === "contactado"
-                            ? "cerrado"
-                            : "nuevo";
-
-                        cambiarEstado(pedido.id, siguienteEstado);
-                      }}
-                    >
-                      {pedido.estado}
-                    </div>
-                  </td>
-
+                  <select
+                    className={`estado-select estado-${pedido.estado}`}
+                    value={pedido.estado}
+                    onChange={(e) =>
+                      cambiarEstado(pedido.id, e.target.value)
+                    }
+                  >
+                    {ESTADOS.map((estado) => (
+                      <option key={estado} value={estado}>
+                        {estado}
+                      </option>
+                    ))}
+                  </select>
                 </td>
 
                 <td>
