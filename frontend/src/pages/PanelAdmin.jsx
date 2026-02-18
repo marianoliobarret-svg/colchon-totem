@@ -99,9 +99,6 @@ const [ordenMonto, setOrdenMonto] = useState("fecha");
       0
     ); 
 
-console.log(pedidos);
-pedidos.forEach(p => console.log(p.producto));
-
   return (
     <div className="admin-container">
       <h1>Panel de administración</h1>
@@ -190,19 +187,16 @@ pedidos.forEach(p => console.log(p.producto));
                     <td>
                       {pedido.producto?.cliente || pedido.cliente || "-"}
                     </td>
-
-
-                    <td>
-                        {[
-                          pedido.producto?.altura && `${pedido.producto.altura}cm`,
-                          pedido.producto?.nucleo,
-                          pedido.producto?.capa,
-                          pedido.producto?.tela
-                        ]
-                          .filter(Boolean)
-                          .join(" · ")}
-                      </td>
-
+                   <td>
+                    {[
+                      `${pedido.producto.altura}cm`,
+                      pedido.producto.nucleo,
+                      ...(pedido.producto.capas || []),
+                      pedido.producto.tela
+                    ]
+                      .filter(Boolean)
+                      .join(" · ")}
+                    </td>
                     <td>
                       $
                       {pedido.precio.total.toLocaleString(
