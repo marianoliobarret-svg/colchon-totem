@@ -190,14 +190,17 @@ console.log(pedidos);
                       {pedido.producto?.cliente || pedido.cliente || "-"}
                     </td>
 
+
                     <td>
-                      {pedido.producto.altura}cm -{" "}
-                      {pedido.producto.nucleo} -{" "}
-                      {pedido.producto.capa} -{" "}
-                      {pedido.producto.tela
-                          ?.filter(Boolean)
+                        {[
+                          pedido.producto?.altura && `${pedido.producto.altura}cm`,
+                          pedido.producto?.nucleo,
+                          pedido.producto?.capa,
+                          pedido.producto?.tela
+                        ]
+                          .filter(Boolean)
                           .join(" · ")}
-                    </td>
+                      </td>
 
                     <td>
                       $
