@@ -407,18 +407,18 @@ button:disabled {
 }
 
 .estado-nuevo {
-  background: #e6f4ff;
+  background: #e5ff00;
   color: #ffff00;
 }
 
 .estado-contactado {
-  background: #fff4e5;
-  color: #ff00a6;
+  background: #a2ff9e;
+  color: #00ff9d;
 }
 
 .estado-cerrado {
-  background: #e8f5e9;
-  color: #2e7d32;
+  background: #ff4949;
+  color: #7d312e;
 }
 
 /* =========================
@@ -474,4 +474,62 @@ select {
   background: white;
   cursor: pointer;
   font-size: 14px;
+}
+
+/* =========================
+  login admin
+========================= */
+
+.login-wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f4f6f9;
+}
+
+.login-card {
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  width: 320px;
+  text-align: center;
+}
+
+.login-card h1 {
+  margin-bottom: 25px;
+}
+
+.login-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.login-card input {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.login-card input:focus {
+  outline: none;
+  border-color: #111827;
+}
+
+.login-card button {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background: #111827;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.login-card button:hover {
+  opacity: 0.9;
 }

@@ -23,10 +23,12 @@ export default function LoginAdmin({ onSuccess }) {
 
 
   return (
+    <div className="login-wrapper">
+      <div className="login-card">
+        <h1>Login Admin</h1>
     <form onSubmit={submit} className="admin-login">
-      <h2>Login Admin</h2>
-
       <input
+        type="text"
         placeholder="Usuario"
         value={user}
         onChange={(e) => setUser(e.target.value)}
@@ -43,5 +45,7 @@ export default function LoginAdmin({ onSuccess }) {
 
       <button type="submit">Ingresar</button>
     </form>
+    </div>
+    </div>
   );
 }
