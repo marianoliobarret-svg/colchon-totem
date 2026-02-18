@@ -205,6 +205,7 @@ const [ordenMonto, setOrdenMonto] = useState("fecha");
                     </td>
 
                     <td>
+                      <div className={`estado-badge estado-${pedido.estado}`}>
                       <select
                         value={pedido.estado}
                         onChange={(e) =>
@@ -214,6 +215,7 @@ const [ordenMonto, setOrdenMonto] = useState("fecha");
                           )
                         }
                       >
+                        
                         {ESTADOS.map((estado) => (
                           <option
                             key={estado}
@@ -223,6 +225,7 @@ const [ordenMonto, setOrdenMonto] = useState("fecha");
                           </option>
                         ))}
                       </select>
+                      </div>
                     </td>
                      <td>
                   <button
