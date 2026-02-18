@@ -1,258 +1,133 @@
-🛏️ Colchón Totem – Configurador de Colchones
+🧠 TOTEM – Admin Panel Progress
+📌 Estado actual del proyecto
+✅ Backend (Node + Express)
 
-Aplicación web para configurar colchones personalizados, calcular precios dinámicos y gestionar pedidos desde un panel de administración.
+Deployado en Render
 
-Proyecto full-stack con frontend en React + Vite y backend en Node + Express, deployado en producción.
+Autenticación con:
 
-📂 Estructura del proyecto
-colchon-totem/
-├── frontend/               # Frontend Vite + React
-│   ├── src/
-│   ├── public/
-│   ├── index.html
-│   ├── vite.config.js
-│   ├── package.json
-│   └── dist/               # Build de producción
-│
-├── backend/                # Backend Node + Express
-│   ├── server.js
-│   ├── precios.json
-│   ├── pedidos.json
-│   ├── package.json
-│   └── .env
-│
-└── README.md
+ADMIN_USER
 
-🚀 Tecnologías usadas
-Frontend
+ADMIN_PASS
 
-React
+ADMIN_TOKEN
 
-Vite
+Middleware de protección funcionando
 
-CSS puro (estilo deco / minimal)
+Endpoints:
 
-Fetch API
+POST /login
 
-Backend
+GET /pedidos (protegido)
 
-Node.js
+POST /pedidos
 
-Express
+PATCH /pedidos/:id (protegido)
 
-CORS
+DELETE /pedidos/:id (protegido)
 
-Persistencia en archivos JSON
+GET /precios
 
-Deploy
+POST /precios (protegido)
 
-Frontend: Vercel
+⚠️ Persistencia con JSON (filesystem efímero en Render – solo demo)
 
-Backend: Render
+✅ Frontend (React + Vite)
+🔐 Login
 
-⚙️ Cómo correr el proyecto en local
-1️⃣ Backend
-cd backend
-npm install
-npm run dev
+Guarda token en localStorage
 
+Protege acceso al panel
 
-El backend corre en:
+📦 Gestión de pedidos
 
-http://localhost:3001
+Ver pedidos
 
+Cambiar estado (nuevo / contactado / cerrado)
 
-Endpoints importantes:
+Eliminar pedido
 
-/precios
+Ordenados por fecha descendente
 
-/pedidos
+📊 Estadísticas implementadas
 
-/login
+Total pedidos
 
-2️⃣ Frontend
-cd frontend
-npm install
-npm run dev
+Nuevos
 
+Contactados
 
-El frontend corre en:
+Cerrados
 
-http://localhost:5173
+Facturación total
 
-🌐 Variables de entorno
-Backend (backend/.env)
-PORT=3001
+🎯 Filtro por estado
 
-Frontend (Vercel o local)
-VITE_API_URL=https://TU_BACKEND.onrender.com
+Todos
 
+Nuevos
 
-⚠️ IMPORTANTE
+Contactados
 
-Cambiar variables en Vercel requiere redeploy
+Cerrados
 
-Si queda en “Cargando precios…”, revisar esta variable primero
+🚀 Próximo paso (Roadmap)
 
-🧠 Problemas comunes y soluciones
-🔴 Página en blanco en producción
+Seguimos con:
 
-Error:
+3️⃣ Ordenar por monto
 
-React is not defined
+Objetivo:
 
+Permitir ordenar pedidos por:
 
-Solución:
-Agregar en TODOS los archivos con JSX:
+Mayor monto
 
-import React from "react";
+Menor monto
 
-🔴 Vercel falla con exit code 126
+Mantener orden dinámico en frontend
 
-Causa: permisos al ejecutar Vite
+Después:
+4️⃣ Auto-logout si no hay token
+5️⃣ Mejorar UI del admin (look SaaS)
 
-Solución definitiva (en Vercel):
+🧩 Recordatorios importantes
 
-Build Command
+Siempre git push frontend y backend por separado.
 
-node ./node_modules/vite/bin/vite.js build
+Si aparece 401 → falta header Authorization.
 
-🔴 “Unexpected token <” o error JSON
+Si aparece 403 → token inválido o no guardado.
 
-Causa: frontend llamando mal al backend
+Hooks (useState, useEffect) solo dentro del componente.
 
-Solución:
+Si desaparecen datos → es por filesystem efímero de Render.
 
-Revisar VITE_API_URL
+🏗 Arquitectura actual
 
-Verificar que /precios devuelva JSON
+Frontend (React)
+⬇ fetch
+Backend (Express)
+⬇
+JSON file (demo storage)
 
-🔴 Backend tarda o no responde
+🧠 Conceptos que ya dominás
 
-Causa: Render (plan free) duerme el servicio
+Deploy separado frontend/backend
 
-Solución:
+Variables de entorno en producción
 
-Abrir manualmente /precios
+Middleware de autenticación
 
-Esperar el primer request
+Status codes 401 vs 403
 
-🧑‍💼 Panel de administración
+CRUD real
 
-Funcionalidades:
+Debug de build (Rollup/Vite)
 
-Ver pedidos (último primero)
+Git flow básico
 
-Cambiar estado del pedido
+Cuando vuelvas mañana:
 
-Gestionar precios:
-
-base
-
-altura
-
-núcleo
-
-capas
-
-telas
-
-Credenciales (hardcodeadas):
-
-user: admin
-pass: 1234
-
-🛏️ Configurador de colchón
-
-Flujo:
-
-Welcome screen (nombre del cliente)
-
-Altura
-
-Núcleo
-
-Capas
-
-Tela
-
-Resumen
-
-Guardar pedido
-
-Incluye:
-
-Preview visual del colchón por capas (imágenes superpuestas)
-
-Precio dinámico
-
-Reiniciar armado
-
-Volver al inicio
-
-🔄 Deploy
-Frontend (Vercel)
-
-Root Directory: frontend
-
-Install Command: npm install
-
-Build Command:
-
-node ./node_modules/vite/bin/vite.js build
-
-
-Output Directory: dist
-
-Backend (Render)
-
-Root Directory: backend
-
-Start Command:
-
-npm start
-
-🧭 Nota personal (importante)
-
-Este proyecto tuvo:
-
-separación frontend / backend
-
-deploy real
-
-debugging de producción
-
-problemas reales de permisos, envs y build
-
-👉 No borrar ni reestructurar sin revisar este README primero.
-
-📌 Próximos posibles pasos
-
-Autenticación real (JWT)
-
-Base de datos (Mongo / Postgres)
-
-Historial de precios
-
-Exportar presupuesto en PDF
-
-Roles de usuario
-
-Animaciones más avanzadas
-
-❤️ Estado actual
-
-✅ Producción funcionando
-✅ Deploy completo
-✅ Proyecto estable
-✅ Listo para iterar y mejorar
-
-Si querés, en el próximo mensaje podemos:
-
-pulir texto del README
-
-hacerlo más “presentable” para cliente
-
-o volver a mejoras de backend con calma y sin estrés
-
-De verdad: excelente trabajo 💪
+👉 Abrí PanelAdmin.jsx
+👉 Vamos directo a implementar orden por monto

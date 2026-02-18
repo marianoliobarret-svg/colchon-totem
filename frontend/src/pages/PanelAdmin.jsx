@@ -15,6 +15,10 @@ export default function PanelAdmin() {
   const [loading, setLoading] = useState(true);
   const [filtro, setFiltro] = useState("todos");
 
+  
+  const [ordenMonto, setOrdenMonto] = useState("fecha"); 
+  // fecha | mayor | menor
+  
   useEffect(() => {
     cargarPedidos();
   }, []);
@@ -47,12 +51,31 @@ export default function PanelAdmin() {
     if (!window.confirm("¿Seguro que querés eliminar este pedido?")) return;
 
     try {
-      await eliminarPedido(id);
-      setPedidos(prev => prev.filter(p => p.id !== id));
-    } catch {
-      alert("Error al eliminar pedido");
-    }
-};
+            await eliminarPedido(id);
+            setPedidos(prev => prev.filter(p => p.id !== id));
+          } catch {
+            alert("Error al eliminar pedido");
+          }
+    };
+
+    const pedidosProcesados = pedidos
+      .filter((pedido) => {
+        if (filtroEstado === "todos") return true;
+        return pedido.estado === filtroEstado;
+      })
+      .sort((a, b) => {
+        if (ordenMonto === "mayor") {
+          return b.monto - a.monto;
+        }
+
+        if (ordenMonto === "menor") {
+          return a.monto - b.monto;
+        }
+
+        // default: fecha descendente
+        return new Date(b.fecha) - new Date(a.fecha);
+    });
+
 
 
   if (loading) return <p>Cargando panel...</p>;
@@ -131,6 +154,14 @@ export default function PanelAdmin() {
               Cerrados
             </button>
           </div>
+
+          <select
+            value={ordenMonto}
+            onChange={(e) => setOrdenMonto(e.target.value)}>
+              <option value="fecha">Más recientes</option>
+              <option value="mayor">Mayor monto</option>
+              <option value="menor">Menor monto</option>
+          </select>
 
           <table className="admin-table">
             <thead>
