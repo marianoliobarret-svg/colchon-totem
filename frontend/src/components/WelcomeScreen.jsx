@@ -17,7 +17,7 @@ export default function WelcomeScreen({ onStart, onAdmin }) {
     <div className="welcome-screen">
       <div className="welcome-card">
         <div className="logo-placeholder"  >
-          <img src="../public/colchon/logo.png" alt="Logo" />
+          <img src="../public/colchon/logo_bed.png" alt="Logo" />
           
         </div>
 
