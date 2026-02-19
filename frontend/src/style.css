@@ -332,7 +332,7 @@ button:disabled {
 }
 .stat-card {
   background: white;
-  padding: 24px;
+  padding: 20;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s ease;
@@ -345,11 +345,17 @@ button:disabled {
   margin-bottom: 0.5rem;
   opacity: 0.7;
 }
+.stat-card h2 {
+  font-size: 1rem;
+  text-align: center;
+  margin-bottom: 0.5em;
+}
 
 .stat-card p {
   font-size: 1.5rem;
   font-weight: bold;
   margin: 18px 0px;
+  text-align: center;
 }
 .stat-card p {
   font-size: 28px;
@@ -392,7 +398,7 @@ button:disabled {
   background: #eee;
   cursor: pointer;
   border-radius: 6px;
-  margin: 30px 0px;
+  margin: 30px 30;
   font-size: large;
 }
 /* =========================
@@ -407,18 +413,18 @@ button:disabled {
 }
 
 .estado-nuevo {
-  background: #e5ff00;
-  color: #ffff00;
+  color: #000000;
+  box-shadow: 0px 0px 10px #00ff9d;
 }
 
 .estado-contactado {
-  background: #a2ff9e;
-  color: #00ff9d;
+  color: #000000;
+  box-shadow: 0px 0px 10px #81cefd;
 }
 
 .estado-cerrado {
-  background: #ff4949;
-  color: #7d312e;
+  color: #000000;
+  box-shadow: 0px 0px 10px #ff4949;
 }
 
 /* =========================

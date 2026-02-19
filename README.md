@@ -1,10 +1,14 @@
-🧠 TOTEM – Admin Panel Progress
-📌 Estado actual del proyecto
-✅ Backend (Node + Express)
+🧠 TOTEM – Admin Panel
 
-Deployado en Render
+Sistema de gestión de pedidos para tótem personalizado.
+Incluye backend con autenticación y panel admin estilo dashboard.
 
-Autenticación con:
+🚀 Estado Actual del Proyecto
+🔙 Backend (Node + Express)
+
+Deployado en Render.
+
+Autenticación
 
 ADMIN_USER
 
@@ -12,9 +16,9 @@ ADMIN_PASS
 
 ADMIN_TOKEN
 
-Middleware de protección funcionando
+Middleware de protección activo
 
-Endpoints:
+Endpoints
 
 POST /login
 
@@ -30,9 +34,9 @@ GET /precios
 
 POST /precios (protegido)
 
-⚠️ Persistencia con JSON (filesystem efímero en Render – solo demo)
+⚠ Persistencia actual en JSON (filesystem efímero – solo demo).
 
-✅ Frontend (React + Vite)
+💻 Frontend (React + Vite)
 🔐 Login
 
 Guarda token en localStorage
@@ -43,13 +47,17 @@ Protege acceso al panel
 
 Ver pedidos
 
-Cambiar estado (nuevo / contactado / cerrado)
+Cambiar estado
 
 Eliminar pedido
 
-Ordenados por fecha descendente
+Orden por fecha
 
-📊 Estadísticas implementadas
+Orden por monto (mayor / menor)
+
+Filtro por estado
+
+📊 Dashboard
 
 Total pedidos
 
@@ -61,73 +69,105 @@ Cerrados
 
 Facturación total
 
-🎯 Filtro por estado
+🧩 Render dinámico de producto
 
-Todos
+Altura
 
-Nuevos
+Núcleo
 
-Contactados
+Capas (array dinámico)
 
-Cerrados
+Tela
 
-🚀 Próximo paso (Roadmap)
-
-Seguimos con:
-
-3️⃣ Ordenar por monto
-
-Objetivo:
-
-Permitir ordenar pedidos por:
-
-Mayor monto
-
-Menor monto
-
-Mantener orden dinámico en frontend
-
-Después:
-4️⃣ Auto-logout si no hay token
-5️⃣ Mejorar UI del admin (look SaaS)
-
-🧩 Recordatorios importantes
-
-Siempre git push frontend y backend por separado.
-
-Si aparece 401 → falta header Authorization.
-
-Si aparece 403 → token inválido o no guardado.
-
-Hooks (useState, useEffect) solo dentro del componente.
-
-Si desaparecen datos → es por filesystem efímero de Render.
-
-🏗 Arquitectura actual
+🏗 Arquitectura
 
 Frontend (React)
 ⬇ fetch
 Backend (Express)
 ⬇
-JSON file (demo storage)
+JSON (demo storage)
 
-🧠 Conceptos que ya dominás
+🧠 Conceptos Aplicados
 
 Deploy separado frontend/backend
 
-Variables de entorno en producción
+Variables de entorno
 
 Middleware de autenticación
 
-Status codes 401 vs 403
+Manejo de status codes (401 / 403)
 
-CRUD real
+CRUD completo
 
-Debug de build (Rollup/Vite)
+Ordenamiento dinámico
 
-Git flow básico
+Limpieza de datos monetarios
 
-Cuando vuelvas mañana:
+Render dinámico de arrays
 
-👉 Abrí PanelAdmin.jsx
-👉 Vamos directo a implementar orden por monto
+Debug estructural JSX
+
+UI estilo SaaS básico
+
+🔜 Roadmap Próximos Pasos
+Nivel Seguridad
+
+ Auto-logout si no hay token
+
+ Expiración de sesión
+
+ Refresh token (futuro)
+
+Nivel Producto
+
+ Sidebar layout tipo SaaS
+
+ Buscador por cliente
+
+ Confirmación visual al cambiar estado
+
+ Modal para detalles del pedido
+
+ Indicadores de tendencia (↑ ↓)
+
+Nivel Escalabilidad
+
+ Migrar JSON a base de datos (Mongo / Postgres)
+
+ Paginación en pedidos
+
+ Filtros combinados
+
+ Roles de usuario
+
+Nivel Comercial
+
+ UI completamente SaaS
+
+ Versión demo pública
+
+ Landing explicativa del sistema
+
+⚠ Recordatorios Importantes
+
+Siempre hacer git push frontend y backend por separado.
+
+Si aparece 401 → falta Authorization header.
+
+Si aparece 403 → token inválido.
+
+Si desaparecen datos → Render usa filesystem efímero.
+
+Hooks (useState, useEffect) solo dentro del componente.
+
+🎯 Decisión Estratégica
+
+Este proyecto puede evolucionar hacia:
+
+Proyecto de aprendizaje
+
+Demo comercial
+
+Producto real escalable
+
+Definir esto cambia las decisiones técnicas futuras.
