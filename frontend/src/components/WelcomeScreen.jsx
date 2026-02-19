@@ -16,7 +16,7 @@ export default function WelcomeScreen({ onStart, onAdmin }) {
   return (
     <div className="welcome-screen">
       <div className="welcome-card">
-        <div className="logo-placeholder">
+        <div className="logo-placeholder" >
           LOGO
         </div>
 
